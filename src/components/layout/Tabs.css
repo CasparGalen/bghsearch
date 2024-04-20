@@ -1,0 +1,74 @@
+/* DaisyUI-theme customized START */
+
+.tab-active {
+  background-color: black !important;
+  border-radius: 24px !important;
+  color: white !important;
+  transition: all 0.3s;
+}
+
+/* DaisyUI-theme customized END */
+
+
+/* classes from top-to-bottom START */
+
+.Tabs-div {
+  @apply flex flex-col justify-center items-center;
+}
+
+.Tabs-outer {
+  @apply flex flex-row justify-between w-full mb-[-45px] mt-5 ml-[20px] mr-[4px];
+  max-width: 1048px;
+  /* px-4 lg:px-10  */
+}
+
+.stats-div,
+.Tabs-button {
+  @apply flex self-center justify-center p-4;
+}
+
+.empty-div{
+  @apply flex flex-row justify-between mb-[-45px] mt-5 px-3 ml-[20px] mr-[4px];
+  padding-left: 150px;
+}
+
+.Tabs-button {
+  @apply tabs tabs-boxed grow-0 bg-[#bababa]
+  transition-all delay-500
+}
+
+[data-theme="dark"] .Tabs-button {
+  @apply bg-[#242424]
+}
+
+.tab {
+  @apply text-black
+}
+
+[data-theme="dark"] .tab {
+  @apply text-[#E5E7EB]
+}
+
+[data-theme="dark"] .tab-active {
+  @apply bg-primary text-black !important
+}
+
+.Tabs-content {
+  min-width: none;
+  max-width: full;
+}
+
+.custom-toggle {
+  @apply mt-3 toggle toggle-md toggle-info border-gray-300 bg-gray-400 hover:bg-gray-700;
+}
+
+[data-theme="dark"] .custom-toggle {
+  @apply mt-3 toggle-md toggle-info border-gray-600 bg-gray-400 hover:bg-gray-200;
+}
+
+.Tabs-buttons .custom-toggle {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+}
+
+/* classes from top-to-bottom END */
+

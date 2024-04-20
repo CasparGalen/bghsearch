@@ -1,0 +1,94 @@
+.slider {
+  display: flex;
+
+}
+
+.slider.horizontal {
+  flex-direction: column;
+
+}
+
+/* .slider.vertical {
+  height: 150px;
+} */
+
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  @apply text-sm
+}
+
+.slider.horizontal .track {
+  height: 30px;
+  width: 100%;
+}
+
+/* track line */
+.track::before {
+  @apply bg-[#bababa] dark:bg-[#2d2d2d];
+  content: attr(x);
+  display: block;
+  position: absolute;
+}
+
+
+.slider.horizontal .track:before {
+  height: 4px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+
+}
+
+/* .slider.vertical .track {
+  width: 30px;
+  height: 100%;
+  border-radius: 999px;
+
+}
+
+.slider.vertical .track:before {
+  width: 3px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+.thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  @apply bg-white dark:bg-[#E5E7EB] border-4 border-[#373737] dark:border-[#545454]
+}
+
+.thumb.dragging {
+  @apply bg-[#373737] dark:bg-[#545454]
+}
+
+.thumb.dragging {
+}
+
+.thumb.focus {
+}
+
+.slider.horizontal .thumb {
+  top: 50%;
+}
+
+.slider.vertical .thumb {
+  left: 50%;
+}
+
+.track.disabled {
+}
+
+.track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 260px;
+  margin: 0 auto;
+  margin-bottom: 12px;
+}
+
