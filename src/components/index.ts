@@ -9,6 +9,5 @@ export * from './RefinementLists/CustomCurrentRefinements';
 export * from './SearchComponents/NoResults';
 export * from './SearchComponents/CustomHighlight';
 export * from './SearchComponents/ResultCard';
-export * from './SearchComponents/ResultPrinciples';
 export * from './Loading';
 export * from './SearchComponents/NoResults';
