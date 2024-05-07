@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stats } from '../TopNavBar/Stats';
+import { Stats, ToggleRefinement } from 'react-instantsearch';
 import './Tabs.css';
 
 export type TabProps = {
@@ -8,11 +8,7 @@ export type TabProps = {
 };
 
 export function Tabs({ children }: { children: React.ReactNode }) {
-  const [currentTab, setCurrentTab] = useState(0);
-
-  const handleTabToggle = () => {
-    setCurrentTab(currentTab === 0 ? 1 : 0);
-  };
+  const [isToggleChecked, setIsToggleChecked] = useState(false);
 
   return (
     <div className="Tabs-div">
@@ -23,35 +19,38 @@ export function Tabs({ children }: { children: React.ReactNode }) {
         </div>
         <div className="Tabs-buttons">
         <label htmlFor="tab-toggle" className="tab">
-          <span 
-            className='mt-3 mr-3 font-medium'>
-              Nur Leitsatzentscheidungen:
+          <span className='mt-3 mr-3 font-medium'>
+            Nur Leitsatzentscheidungen:
           </span>
           <input
             id="tab-toggle"
             type="checkbox"
             className="custom-toggle"
-            checked={currentTab === 1}
-            onChange={handleTabToggle}
+            onChange={() => setIsToggleChecked(!isToggleChecked)}
           />
         </label>
-        </div>
+      </div>
       </div>
       <div className="Tabs-content">
-        <div className='select-bordered'></div>
         {React.Children.map(children, (child, index) => (
           <div
             tabIndex={0}
             role="tabpanel"
             id={`tab-${index}`}
             aria-labelledby={`tab-${index}`}
-            hidden={currentTab !== index}
             key={index}
           >
-            {child}
+            {React.cloneElement(child as React.ReactElement<any>, { isToggleChecked })}
           </div>
         ))}
       </div>
+      {isToggleChecked && (
+        <ToggleRefinement
+          attribute="guiding_principles"
+          off="Ja"
+          className={isToggleChecked ? 'hidden-toggle-refinement' : ''}
+        />
+      )}
     </div>
   );
 }

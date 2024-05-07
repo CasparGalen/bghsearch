@@ -12,7 +12,6 @@ import { Tab, Tabs } from 'components/layout';
 import { LoadingIndicator } from 'components';
 import { NoResultsBoundary, NoResultsCard } from 'components';
 import { ResultCard } from 'components';
-import { ResultPrinciples } from 'components';
 import SideDrawer from 'components/Drawer/SideDrawer';
 import InsideDrawer from 'components/Drawer/InsideDrawer';
 
@@ -126,16 +125,6 @@ function App() {
                         <NoResultsBoundary fallback={<NoResultsCard />}>
                           <ResultCard resultsInnerRef={resultsInnerRef} />
                         </NoResultsBoundary>
-                      </Tab>
-                      <Tab title='Tabelle'>
-                        <select className="select select-bordered" value={indexName} onChange={handleSortChange}>
-                          <option value="BGH_SEARCH">Nach Relevanz sortieren</option>
-                          <option value="BGH_SEARCH:decision_date_unix:desc">Nach Datum sortieren</option>
-                        </select>
-                        <LoadingIndicator />
-                        <NoResultsBoundary fallback={<NoResultsCard />}>
-                          <ResultPrinciples />
-                        </NoResultsBoundary> 
                       </Tab>
                     </Tabs>
                   </div>

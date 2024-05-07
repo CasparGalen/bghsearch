@@ -4,7 +4,13 @@ import { isModifierClick } from '../../isModifierClick';
 import cx from "classnames";
 
 const transformItems = (items) => {
-  return items.map((item) => { // Ensure you return the result of map
+  return items.map((item) => {
+
+    // Exclude guiding_principles filter
+    if (item.attribute === 'guiding_principles') {
+      return null; 
+    }
+
     if (item.attribute.startsWith('fromtext_motion_category')) {
       item.label = 'Bewegungskategorie';
     }
@@ -28,15 +34,15 @@ const transformItems = (items) => {
     if (item.attribute === 'fromtext_motion_category') {
       item.label = 'Verfahrensart';
     }
-    if (item.attribute === 'fromtext _decision_result') {
+    if (item.attribute === 'fromtext_decision_result') {
       item.label = 'Entscheidungsergebnis';
     }
     if (item.attribute === 'senat') {
       item.label = 'Senat';
     }
 
-    return item; // This is the key change to address the warning
-  });
+    return item;
+  }).filter(Boolean);
 };
 
 export function CustomCurrentRefinements(props) {
@@ -52,7 +58,7 @@ export function CustomCurrentRefinements(props) {
             'ais-CurrentRefinements-item': true,
             'badge' : true,
             'badge-typ': (item.attribute === "fromtext_motion_category"),
-            'badge-firmenname' : (["guiding_principles", "fromtext_fromtext_fromtext_decision_result", "senat"].includes(item.attribute)),
+            'badge-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
             'badge-eigenschaften' : (["decision_date_unix"].includes(item.attribute)),
             'current-refinement-badge': true
           })}
@@ -84,7 +90,7 @@ export function CustomCurrentRefinements(props) {
                 className={cx({
                   'ais-CurrentRefinements-delete btn btn-circle btn-xs': true,
                   'button-typ': (item.attribute === "fromtext_motion_category"),
-                  'button-firmenname' : (["guiding_principles", "fromtext_decision_result", "senat"].includes(item.attribute)),
+                  'button-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
                   'button-eigenschaften' : (["decision_date_unix"].includes(item.attribute)),
                   // Die untere auch??? Was ist da drin??
                   // 'current-refinement-badge': true
