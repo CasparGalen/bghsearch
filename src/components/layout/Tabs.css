@@ -70,5 +70,9 @@
   transform: scale(1.1); /* Adjust the scale factor as needed */
 }
 
+.hidden-toggle-refinement {
+  display: none;
+}
+
 /* classes from top-to-bottom END */
 
