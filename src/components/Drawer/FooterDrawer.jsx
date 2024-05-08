@@ -7,7 +7,7 @@ export function FooterDrawer() {
         yourmail
       </a>{' '}
       &#x2022;  */}
-      &copy; 2023 Caspar von Galen & Jonathan Melke
+      &copy; 2023 Caspar von Galen & Jonathan Melke <p><a href="/impressum.html">Impressum</a></p>
     </p>
   );
 }
