@@ -677,7 +677,7 @@
 
           .sidebar-footer {
             @apply visible text-xs p-4 text-[#909090];
-            position: fixed; /* Change from absolute to fixed */
+            position: sticky; /* Change from absolute to fixed */
             bottom: 0;
             width: 100%; /* Occupy full width */
             background-color: white; /* Example background color */
@@ -686,7 +686,7 @@
   
           [data-theme=dark] .sidebar-footer {
             @apply visible text-xs p-4 text-[#909090];
-            position: fixed; /* Change from absolute to fixed */
+            position: sticky; /* Change from absolute to fixed */
             bottom: 0;
             width: 100%; /* Occupy full width */
             background-color: #1d1d1d; /* Example background color */
@@ -803,14 +803,17 @@
         /* show scrollbar on hover */
 
           .div-drawer-side {
-            @apply lg:invisible w-80 bg-base-100 z-50 mt-[64px];
+            @apply lg:invisible bg-base-100 z-50 mt-[64px];
             height: calc(100vh - 64px);
+            overflow-y: auto;
+            overflow-x: hidden;
           }
 
           .div-drawer-side:hover,
           .div-drawer-side:focus {
             @apply visible;
             transition: visibility 0s 0.2s;
+            
           }
 
         /* refinementlists */
