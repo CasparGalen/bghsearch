@@ -31,6 +31,23 @@ const transformItems = (items) => {
         }
       }
     }
+    if (item.attribute === 'einspiel_date_unix') {
+      item.label = 'Einspieldatum';
+      let startdate = item.refinements[0].label.split(" ");
+      let startDateTimestamp = Number(startdate[1]) * 1000;
+      if (!isNaN(startDateTimestamp)) {
+        let startDate = new Date(startDateTimestamp);
+        item.refinements[0].label = startdate[0].concat(Intl.DateTimeFormat('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(startDate));
+      }
+      if (item.refinements[1] !== undefined) {
+        let enddate = item.refinements[1].label.split(" ");
+        let endDateTimestamp = Number(enddate[1]) * 1000;
+        if (!isNaN(endDateTimestamp)) {
+          let endDate = new Date(endDateTimestamp);
+          item.refinements[1].label = enddate[0].concat(Intl.DateTimeFormat('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(endDate));
+        }
+      }
+    }
     if (item.attribute === 'fromtext_motion_category') {
       item.label = 'Verfahrensart';
     }
@@ -59,7 +76,7 @@ export function CustomCurrentRefinements(props) {
             'badge' : true,
             'badge-typ': (item.attribute === "fromtext_motion_category"),
             'badge-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
-            'badge-eigenschaften' : (["decision_date_unix"].includes(item.attribute)),
+            'badge-eigenschaften' : (["decision_date_unix", "einspiel_date_unix"].includes(item.attribute)),
             'current-refinement-badge': true
           })}
         >
@@ -91,7 +108,7 @@ export function CustomCurrentRefinements(props) {
                   'ais-CurrentRefinements-delete btn btn-circle btn-xs': true,
                   'button-typ': (item.attribute === "fromtext_motion_category"),
                   'button-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
-                  'button-eigenschaften' : (["decision_date_unix"].includes(item.attribute)),
+                  'button-eigenschaften' : (["decision_date_unix","einspiel_date_unix"].includes(item.attribute)),
                   // Die untere auch??? Was ist da drin??
                   // 'current-refinement-badge': true
                 })}
