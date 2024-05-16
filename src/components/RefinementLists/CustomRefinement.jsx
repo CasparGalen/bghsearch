@@ -82,8 +82,9 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
       <div className="">
         {attribute === "senat" && (
           <>
+          <div className="" style={{marginTop:"5px", marginBottom:"10px"}}>
             <ToggleRefinement 
-              label=" Zivilrecht"
+              label="Zivilrecht"
               attribute="senat"
               on={[
                 "I. Zivilsenat",
@@ -104,9 +105,14 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
                 "XIII. Zivilsenat",
                 "Großer Senat für Zivilsachen"
               ]}
+              classNames={{
+                label: 'cursor-pointer space-x-2 flex items-center font-bold text-sm',
+                count: 'badge badge-primary badge-sm badge-outline',
+                checkbox: 'checkbox checkbox-primary checkbox-xs'
+              }}
             />
             <ToggleRefinement 
-              label=" Strafrecht"
+              label="Strafrecht"
               attribute="senat"
               on={[
                 "1. Strafsenat",
@@ -117,7 +123,13 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
                 "6. Strafsenat",
                 "Großer Senat für Strafsachen"
               ]}
+              classNames={{
+                label: 'cursor-pointer space-x-2 flex items-center font-bold text-sm',
+                count: 'badge badge-primary badge-sm badge-outline',
+                checkbox: 'checkbox checkbox-primary checkbox-xs',
+              }}
             />
+          </div>
           </>
         )}
         <RefinementList

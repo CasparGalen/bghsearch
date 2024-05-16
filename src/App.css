@@ -514,6 +514,7 @@
       }
       .ais-SearchBox-input[type="search"]::-webkit-search-cancel-button {
         display: none;
+        max-width: 300px;
       }
 
     /* info-button */
@@ -871,11 +872,12 @@
           }
 
           .ais-RefinementList-searchBox .ais-SearchBox-input {
-            @apply input input-bordered input-sm focus:outline-none flex grow border-[#cccccc]
-
+            @apply input input-bordered input-sm focus:outline-none flex grow border-[#cccccc];
+            max-width: 285px;
           }
           [data-theme="dark"] .ais-RefinementList-searchBox .ais-SearchBox-input {
-            @apply border-[#373737]
+            @apply border-[#373737];
+            max-width: 285px;
           }
           .ais-RefinementList-searchBox .ais-SearchBox-submit {
             @apply hidden
