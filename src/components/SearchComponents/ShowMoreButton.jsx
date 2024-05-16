@@ -36,7 +36,6 @@ export const calculateStartIdx = (text, windowSize) => {
   return calculatedStartIdx;
 };
 
-
 const ShowMoreButton = ({ hit, resultsInnerRef, CustomHighlightText }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -56,6 +55,9 @@ const ShowMoreButton = ({ hit, resultsInnerRef, CustomHighlightText }) => {
       resultsInnerRef.current.scrollTop = 0;
     }
   }, [indexUiState, resultsInnerRef]);
+
+  // Check if highlight result text is available
+  const highlightText = hit['_highlightResult']?.['text']?.['value'];
 
   return (
     <div>
@@ -92,12 +94,16 @@ const ShowMoreButton = ({ hit, resultsInnerRef, CustomHighlightText }) => {
         </div>
       ) : (
         <div>
-          <CustomHighlight
-            text={hit['_highlightResult']['text']['value']}
-            windowSize={150}
-            preview={false}
-            startIdx={hit.highlightStartIdx}
-          />
+          {highlightText ? (
+            <CustomHighlight
+              text={highlightText}
+              windowSize={150}
+              preview={false}
+              startIdx={hit.highlightStartIdx}
+            />
+          ) : (
+            <p>No highlighted text available</p>
+          )}
           <button
             className="div-showmore-less"
             onClick={() => handleToggle(hit.id)}

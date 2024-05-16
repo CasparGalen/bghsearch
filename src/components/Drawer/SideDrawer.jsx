@@ -2,6 +2,7 @@ import React from "react";
 import DatumRefinement from "../RefinementLists/DatumRefinement";
 import { FooterDrawer } from "./FooterDrawer";
 import CustomRefinement from "../RefinementLists/CustomRefinement";
+import EinspieldatumRefinement from "components/RefinementLists/EinspieldatumRefinement";
 
 function SideDrawer() {
   return (
@@ -23,6 +24,9 @@ function SideDrawer() {
             </div>
             <div>
               <DatumRefinement />
+            </div>
+            <div>
+              <EinspieldatumRefinement />
             </div>
           </div>
         </div>

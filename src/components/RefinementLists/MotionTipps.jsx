@@ -17,7 +17,7 @@ function MotionTipps() {
           setDropdownPosition("dropdown-end");
         } else {
           setMaxHeight("none");
-          setDropdownPosition("dropdown-start");
+          setDropdownPosition("dropdown-end");
         }
       } else if (windowHeight <= 900) {
         setMaxWidth("none");
@@ -26,7 +26,7 @@ function MotionTipps() {
       } else {
         setMaxWidth("none");
         setMaxHeight("none");
-        setDropdownPosition("dropdown-start");
+        setDropdownPosition("dropdown-end");
       }
     }
 

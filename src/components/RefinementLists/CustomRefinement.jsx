@@ -1,5 +1,5 @@
 import React from "react";
-import { RefinementList } from "react-instantsearch";
+import { RefinementList, ToggleRefinement } from "react-instantsearch";
 import MotionTipps from "./MotionTipps";
 import DecisionTipps from "./DecisionTipps";
 
@@ -80,6 +80,58 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
         </div>
       </div>
       <div className="">
+        {attribute === "senat" && (
+          <>
+          <div className="" style={{marginTop:"5px", marginBottom:"10px"}}>
+            <ToggleRefinement 
+              label="Zivilrecht"
+              attribute="senat"
+              on={[
+                "I. Zivilsenat",
+                "II. Zivilsenat",
+                "III. Zivilsenat",
+                "IV. Zivilsenat",
+                "V. Zivilsenat",
+                "VI. Zivilsenat",
+                "VIa. Zivilsenat",
+                "VII. Zivilsenat",
+                "VIII. Zivilsenat",
+                "IX. Zivilsenat",
+                "IXa. Zivilsenat",
+                "X. Zivilsenat",
+                "Xa. Zivilsenat",
+                "XI. Zivilsenat",
+                "XII. Zivilsenat",
+                "XIII. Zivilsenat",
+                "Großer Senat für Zivilsachen"
+              ]}
+              classNames={{
+                label: 'cursor-pointer space-x-2 flex items-center font-semibold text-sm',
+                count: 'badge badge-primary badge-sm badge-outline',
+                checkbox: 'checkbox checkbox-primary checkbox-xs'
+              }}
+            />
+            <ToggleRefinement 
+              label="Strafrecht"
+              attribute="senat"
+              on={[
+                "1. Strafsenat",
+                "2. Strafsenat",
+                "3. Strafsenat",
+                "4. Strafsenat",
+                "5. Strafsenat",
+                "6. Strafsenat",
+                "Großer Senat für Strafsachen"
+              ]}
+              classNames={{
+                label: 'cursor-pointer space-x-2 flex items-center font-semibold text-sm',
+                count: 'badge badge-primary badge-sm badge-outline',
+                checkbox: 'checkbox checkbox-primary checkbox-xs',
+              }}
+            />
+          </div>
+          </>
+        )}
         <RefinementList
           attribute={attribute}
           limit={8}
@@ -149,3 +201,4 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
 }
 
 export default CustomRefinement;
+
