@@ -106,7 +106,7 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
                 "Großer Senat für Zivilsachen"
               ]}
               classNames={{
-                label: 'cursor-pointer space-x-2 flex items-center font-bold text-sm',
+                label: 'cursor-pointer space-x-2 flex items-center font-semibold text-sm',
                 count: 'badge badge-primary badge-sm badge-outline',
                 checkbox: 'checkbox checkbox-primary checkbox-xs'
               }}
@@ -124,7 +124,7 @@ function CustomRefinement({ attribute, sortBy, title, operator, searchable }) {
                 "Großer Senat für Strafsachen"
               ]}
               classNames={{
-                label: 'cursor-pointer space-x-2 flex items-center font-bold text-sm',
+                label: 'cursor-pointer space-x-2 flex items-center font-semibold text-sm',
                 count: 'badge badge-primary badge-sm badge-outline',
                 checkbox: 'checkbox checkbox-primary checkbox-xs',
               }}
