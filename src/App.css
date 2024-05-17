@@ -403,6 +403,11 @@
 
     .decision-date {
       font-size: small;
+      align-self: flex-end;
+    }
+
+    .result-card-top-left{
+      margin-bottom: 10px
     }
 /* searchresults END */
 

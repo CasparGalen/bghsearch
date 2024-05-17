@@ -57,6 +57,9 @@ const transformItems = (items) => {
     if (item.attribute === 'senat') {
       item.label = 'Senat';
     }
+    if (item.attribute === 'legal_category') {
+      item.label = 'Rechtskategorie';
+    }
 
     return item;
   }).filter(Boolean);
@@ -75,7 +78,7 @@ export function CustomCurrentRefinements(props) {
             'ais-CurrentRefinements-item': true,
             'badge' : true,
             'badge-typ': (item.attribute === "fromtext_motion_category"),
-            'badge-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
+            'badge-firmenname' : (["fromtext_decision_result", "senat", "legal_category"].includes(item.attribute)),
             'badge-eigenschaften' : (["decision_date_unix", "einspiel_date_unix"].includes(item.attribute)),
             'current-refinement-badge': true
           })}
@@ -107,7 +110,7 @@ export function CustomCurrentRefinements(props) {
                 className={cx({
                   'ais-CurrentRefinements-delete btn btn-circle btn-xs': true,
                   'button-typ': (item.attribute === "fromtext_motion_category"),
-                  'button-firmenname' : (["fromtext_decision_result", "senat"].includes(item.attribute)),
+                  'button-firmenname' : (["fromtext_decision_result", "senat", "legal_category"].includes(item.attribute)),
                   'button-eigenschaften' : (["decision_date_unix","einspiel_date_unix"].includes(item.attribute)),
                   // Die untere auch??? Was ist da drin??
                   // 'current-refinement-badge': true

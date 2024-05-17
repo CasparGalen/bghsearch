@@ -20,6 +20,9 @@ function SideDrawer() {
               <CustomRefinement attribute='fromtext_decision_result' sortBy='count:desc' title='Entscheidungsergebnis' operator="or" searchable={false} />
             </div>
             <div>
+              <CustomRefinement attribute='legal_category' sortBy='alpha:asc' title='Rechtskategorie' operator="or" searchable={false} />
+            </div>
+            <div>
               <CustomRefinement attribute='senat' sortBy='alpha:asc' title='Senat' operator="or" searchable={true} />
             </div>
             <div>

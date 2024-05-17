@@ -93,15 +93,35 @@ export const ResultCard = (resultsInnerRef, props) => {
                   </span>
                 )}
               </div>
-              <div style={{ alignSelf: 'flex-end' }}>
-                {hit.guiding_principles && hit.guiding_principles.includes('Ja') && (
-                  <>
-                    <span className='badge-typ font-semibold'>
-                      {"Leitsatzenscheidung"}
-                    </span>
-                  </>
-                )}
-              </div>
+                <div className='result-card-top-left'>
+                  <div className="decision-date">
+                    <div className="font-semibold">
+                      Einspieldatum:{' '}
+                      {hit.einspiel_date_unix !== undefined ? (
+                        <span className="badge-eigenschaften font-semibold">
+                          {Intl.DateTimeFormat('de-DE', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                          }).format(hit.einspiel_date_unix * 1000)}
+                        </span>
+                      ) : (
+                        <span className="badge-eigenschaften font-semibold">
+                        keine Angabe
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div style={{ marginTop: "-10px", alignSelf: 'flex-end'}}>
+              {hit.guiding_principles && hit.guiding_principles.includes('Ja') && (
+                <>
+                  <span className='badge-typ font-semibold'>
+                    {"Leitsatzenscheidung"}
+                  </span>
+                </>
+              )}
             </div>
             <h2 className='card-title'>
               <div className='title-file-name text-left content-start result-card-title'>

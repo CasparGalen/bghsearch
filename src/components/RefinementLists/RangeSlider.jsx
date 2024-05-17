@@ -16,14 +16,13 @@ export function RangeSlider(props) {
   const [selectedRange, setSelectedRange] = useState(null);
 
   useEffect(() => {
-
     if (start) {
       const [minStart, maxStart] = start;
       const minFinite = minStart === -Infinity ? range.min : minStart;
       const maxFinite = maxStart === Infinity ? range.max : maxStart;
       setValues([Math.max(minFinite, range.min), Math.min(maxFinite, range.max)]);
-      setStartValue(formatDate(minFinite));
-      setEndValue(formatDate(maxFinite));
+      setStartValue(formatDate(Math.max(minFinite, range.min)));
+      setEndValue(formatDate(Math.min(maxFinite, range.max)));
     }
   }, [start, range.min, range.max]);
 
@@ -37,16 +36,26 @@ export function RangeSlider(props) {
   }, [values, canRefine, refine]);
 
   const handleInputChange = (inputType, value) => {
-    const timestamp = parseDate(value);
+    let timestamp = parseDate(value);
     if (timestamp === null) {
       return;
     }
+
     if (inputType === "start") {
-      setStartValue(value);
-      setValues([timestamp, values[1]]); // Only update the start value in values array
+      if (timestamp > values[1]) {
+        timestamp = values[1];
+      }
+      setStartValue(formatDate(timestamp));
+      setValues([timestamp, values[1]]);
     } else {
-      setEndValue(value);
-      setValues([values[0], timestamp]); // Only update the end value in values array
+      if (timestamp < values[0]) {
+        timestamp = values[0];
+      }
+      if (timestamp > range.max) {
+        timestamp = range.max;
+      }
+      setEndValue(formatDate(timestamp));
+      setValues([values[0], timestamp]);
     }
   };
 
@@ -57,24 +66,15 @@ export function RangeSlider(props) {
 
     setSelectedRange(months);
     setStartValue(formatDate(startTimestamp));
-    setValues([startTimestamp, parseDate(endValue)]); // Only update the start date
+    setValues([startTimestamp, parseDate(endValue)]);
     refine([startTimestamp, parseDate(endValue)]);
   };
-
 
   const buttonOptions = [
     { label: "3 Monate", value: 3 },
     { label: "1 Jahr", value: 12 },
     { label: "3 Jahre", value: 36 }
   ];
-
-  function getCurrentDateISO() {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
 
   return (
     <div>
@@ -98,13 +98,10 @@ export function RangeSlider(props) {
           type="date"
           value={startValue}
           onChange={(e) => handleInputChange("start", e.target.value)}
-          onBlur={() => {
-            handleInputChange("start", startValue);
-            setValues([parseDate(startValue), values[1]]);
-          }}
+          onBlur={() => handleInputChange("start", startValue)}
           disabled={!canRefine}
           min={formatDate(range.min)}
-          max={getCurrentDateISO()}
+          max={endValue} // Set max to the current end value
         />
       </div>
       <div className="end-date-label">
@@ -114,16 +111,12 @@ export function RangeSlider(props) {
           type="date"
           value={endValue}
           onChange={(e) => handleInputChange("end", e.target.value)}
-          onBlur={(e) => {
-            handleInputChange("end", endValue);
-            setValues([values[0], parseDate(endValue)]);
-          }}
+          onBlur={(e) => handleInputChange("end", endValue)}
           disabled={!canRefine}
-          min={formatDate(range.min)}
-          max={getCurrentDateISO()}
+          min={startValue} // Set min to the current start value
+          max={formatDate(range.max)} // Set max to the range max
         />
       </div>
     </div>
   );
 }
-
