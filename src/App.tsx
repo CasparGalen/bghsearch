@@ -120,6 +120,7 @@ function App() {
                         <select className="select select-bordered" value={indexName} onChange={handleSortChange}>
                           <option value="BGH_SEARCH">Nach Relevanz sortieren</option>
                           <option value="BGH_SEARCH:decision_date_unix:desc">Nach Datum sortieren</option>
+                          <option value="BGH_SEARCH:einspiel_date_unix:desc">Nach Einspieldatum sortieren</option>
                         </select>
                         <LoadingIndicator />
                         <NoResultsBoundary fallback={<NoResultsCard />}>
