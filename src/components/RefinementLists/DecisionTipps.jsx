@@ -41,7 +41,7 @@ function DecisionTipps() {
         className={`dropdown ${dropdownPosition} z-100 tooltip tooltip-right`}
         data-tip="Tipps"
       >
-        <label tabIndex={0} className='btn btn-circle info-btn' >
+        <label tabIndex={0} className='btn btn-circle info-btn shadow-none'>
           <svg
             className='info-icon'
             xmlns='http://www.w3.org/2000/svg'
