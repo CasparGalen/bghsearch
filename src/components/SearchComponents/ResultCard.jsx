@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import { useInfiniteHits, Highlight } from 'react-instantsearch';
 import { ReactComponent as DOCIcon } from 'assets/images/doc-icon.svg';
 import { ReactComponent as PDFIcon } from 'assets/images/pdf-icon.svg';
@@ -30,8 +31,9 @@ function SetFileIcon({ filePath }) {
   }
 }
 
-export const ResultCard = (resultsInnerRef, props) => {
+export const ResultCard = (props) => {
   const { hits, isLastPage, showMore } = useInfiniteHits(props);
+  const resultsInnerRef = useRef(null);
 
   hits.forEach((hit) => {
     console.log('hit:', hit);
@@ -41,7 +43,7 @@ export const ResultCard = (resultsInnerRef, props) => {
   });
 
   return (
-    <div className="ais-InfiniteHits">
+    <div className="ais-InfiniteHits" ref={resultsInnerRef}>
       {hits.map((hit, index) => (
         <div key={hit.id} className="result-card-outer">
           <div className='result-card-body'>

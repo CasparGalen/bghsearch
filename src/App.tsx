@@ -53,14 +53,19 @@ function App() {
   };
 
   const scrollToTop = () => {
-    if (resultsInnerRef.current) {
+    // Check if the UI state change was triggered by clicking the "Weitere Ergebnisse anzeigen" button
+    const isShowMoreButtonClick = document.activeElement?.classList.contains('btn') &&
+      document.activeElement.textContent === 'Weitere Ergebnisse anzeigen';
+  
+    // Scroll to top only if the UI state change was not triggered by the button click
+    if (!isShowMoreButtonClick && resultsInnerRef.current) {
       resultsInnerRef.current.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     }
   };
-
+  
   return (
     <div className="wrapper">
       <InstantSearch

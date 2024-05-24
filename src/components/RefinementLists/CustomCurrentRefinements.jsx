@@ -80,7 +80,8 @@ export function CustomCurrentRefinements(props) {
             'badge-typ': (item.attribute === "fromtext_motion_category"),
             'badge-firmenname' : (["fromtext_decision_result", "senat", "legal_category"].includes(item.attribute)),
             'badge-eigenschaften' : (["decision_date_unix", "einspiel_date_unix"].includes(item.attribute)),
-            'current-refinement-badge': true
+            'current-refinement-badge': true,
+            'badge-lost': (item.attribute === "fromtext_decision_result" && item.refinements.some(refinement => refinement.label === "Verloren"))
           })}
         >
           <span
