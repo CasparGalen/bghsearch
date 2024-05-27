@@ -14,7 +14,7 @@ function SideDrawer() {
           {/* refinementlists */}
           <div  className="visible">
             <div>
-              <CustomRefinement attribute='legal_category' sortBy='alpha:asc' title='Rechtskategorie' operator="or" searchable={false} />
+              <CustomRefinement attribute='legal_category' sortBy='alpha:asc' title='Rechtsgebiet' operator="or" searchable={false} />
             </div>
             <div>
               <CustomRefinement attribute='fromtext_motion_category' sortBy='count:desc' title='Verfahrensart' operator="or" searchable={false} />
