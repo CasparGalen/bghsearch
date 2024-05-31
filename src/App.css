@@ -346,9 +346,18 @@
       font-weight: 600
     }
 
+    @media screen and (max-width: 1154px) {
+      .select{
+        width: 210px;
+      }
+
+      .empty-div{
+        padding-left: 50px;
+      }
+    }
+
     .empty-div {
       padding: 24px;
-      background-color: tra;
     }
 
   /* "Detail" */

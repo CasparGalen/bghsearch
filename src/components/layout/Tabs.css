@@ -27,6 +27,40 @@
   @apply flex self-center justify-center p-4;
 }
 
+@media screen and (max-width: 1154px) {
+  .stats-div,
+  .Tabs-button {
+    font-size: 12px
+  }
+  
+  .guiding_principle_button{
+    font-size: 12px
+  }
+
+  .empty-div{
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 690) {
+  .stats-div,
+  .Tabs-button {
+    font-size: 6px
+  }
+  
+  .guiding_principle_button{
+    font-size: 6px
+  }
+
+  .empty-div{
+    margin-left: 50px;
+  }
+}
+
+.guiding_principle_button{
+  @apply mt-3 mr-3 font-medium
+}
+
 .empty-div{
   @apply flex flex-row justify-between mb-[-45px] mt-5 px-3 ml-[20px] mr-[4px];
   padding-left: 150px;

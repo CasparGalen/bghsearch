@@ -19,7 +19,7 @@ export function Tabs({ children }: { children: React.ReactNode }) {
         </div>
         <div className="Tabs-buttons">
         <label htmlFor="tab-toggle" className="tab">
-          <span className='mt-3 mr-3 font-medium'>
+          <span className='guiding_principle_button'>
             Nur Leitsatzentscheidungen:
           </span>
           <input
