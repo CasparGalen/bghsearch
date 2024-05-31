@@ -80,16 +80,23 @@ export function RangeSlider(props) {
     <div>
       <div className="button-container">
         <p>Letzte</p>
-        {buttonOptions.map(option => (
-          <button
-            key={option.value}
-            onClick={() => handleRangeSelect(option.value)}
-            disabled={!canRefine}
-            className={`button-rangeslider ${selectedRange === option.value ? 'selected' : ''}`}
-          >
-            {option.label}
-          </button>
-        ))}
+        {buttonOptions.map(option => {
+          const currentDate = new Date();
+          currentDate.setMonth(currentDate.getMonth() - option.value);
+          const startTimestamp = currentDate.getTime() / 1000;
+          const isDisabled = startTimestamp < range.min;
+
+          return (
+            <button
+              key={option.value}
+              onClick={() => handleRangeSelect(option.value)}
+              disabled={!canRefine || isDisabled}
+              className={`button-rangeslider ${selectedRange === option.value ? 'selected' : ''}`}
+            >
+              {option.label}
+            </button>
+          );
+        })}
       </div>
       <div className="start-date-label pt-4 pb-2">
         <label className="pr-[5px]">Von: </label>
