@@ -62,13 +62,20 @@ export function RangeSlider(props) {
   const handleRangeSelect = (months) => {
     const currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() - months);
-    const startTimestamp = currentDate.getTime() / 1000;
-
+    let startTimestamp = currentDate.getTime() / 1000;
+  
+    // Ensure startTimestamp is not smaller than the minimum allowed value
+    const minAllowedTimestamp = range.min;
+    if (startTimestamp < minAllowedTimestamp) {
+      startTimestamp = minAllowedTimestamp;
+    }
+  
     setSelectedRange(months);
     setStartValue(formatDate(startTimestamp));
     setValues([startTimestamp, parseDate(endValue)]);
     refine([startTimestamp, parseDate(endValue)]);
   };
+  
 
   const buttonOptions = [
     { label: "3 Monate", value: 3 },
@@ -83,14 +90,11 @@ export function RangeSlider(props) {
         {buttonOptions.map(option => {
           const currentDate = new Date();
           currentDate.setMonth(currentDate.getMonth() - option.value);
-          const startTimestamp = currentDate.getTime() / 1000;
-          const isDisabled = startTimestamp < range.min;
-
           return (
             <button
               key={option.value}
               onClick={() => handleRangeSelect(option.value)}
-              disabled={!canRefine || isDisabled}
+              disabled={!canRefine}
               className={`button-rangeslider ${selectedRange === option.value ? 'selected' : ''}`}
             >
               {option.label}
