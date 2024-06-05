@@ -90,6 +90,12 @@ export function RangeSlider(props) {
         {buttonOptions.map(option => {
           const currentDate = new Date();
           currentDate.setMonth(currentDate.getMonth() - option.value);
+          const startTimestamp = currentDate.getTime() / 1000;
+          
+          if (startTimestamp < range.min) {
+            return null; // Do not render the button if its startTimestamp is less than range.min
+          }
+          
           return (
             <button
               key={option.value}
